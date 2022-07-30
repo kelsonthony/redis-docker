@@ -1,0 +1,18 @@
+version: "3.6"
+services:
+    redis:
+        image: 'bitnami/redis:latest'
+        restart: unless-stopped
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        ports:
+            - "6379:6379"
+        expose:
+            # Opens port 3306 on the container
+            - "6379"
+            # Where our data will be persisted
+        volumes:
+            - redisdb:/var/lib/redis
+# Names our volume
+volumes:
+    redisdb:
